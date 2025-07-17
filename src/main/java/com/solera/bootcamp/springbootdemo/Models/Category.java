@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -21,6 +22,7 @@ public class Category {
     private double price;
     private Category category;
 
+    @OneToMany(mappedBy = "category")
     private List<Product> products;
 
 }

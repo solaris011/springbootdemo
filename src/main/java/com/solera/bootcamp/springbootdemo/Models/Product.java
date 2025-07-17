@@ -3,13 +3,18 @@ package com.solera.bootcamp.springbootdemo.Models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name = "products")
 @Setter
 @Getter
+
 public class Product {
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
@@ -17,18 +22,20 @@ public class Product {
     private String name;
     private String description;
     private double price;
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 
-    public Product(long id, String name, String description, double price) {
+    public Product(long id, String name, String description, double price, Category category) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-   
+        this.category = category;
     }
 
-    public Product() {
-        // Default constructor
     }
+
 
     public long getId() {
         return id;
